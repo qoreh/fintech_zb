@@ -4,8 +4,6 @@ import com.zerobase.fintech.domain.ProductInfo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
