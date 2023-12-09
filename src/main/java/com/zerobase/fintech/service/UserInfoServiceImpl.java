@@ -5,7 +5,6 @@ import com.zerobase.fintech.dto.UserInfoDto;
 import com.zerobase.fintech.encrypt.EncryptComponent;
 import com.zerobase.fintech.exception.CustomException;
 import com.zerobase.fintech.repository.UserInfoRepository;
-import com.zerobase.fintech.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

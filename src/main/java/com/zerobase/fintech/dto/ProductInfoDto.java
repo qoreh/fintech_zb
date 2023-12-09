@@ -1,6 +1,5 @@
 package com.zerobase.fintech.dto;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.zerobase.fintech.domain.ProductInfo;
 import com.zerobase.fintech.type.OrganizationCode;
 import com.zerobase.fintech.type.ProductCode;

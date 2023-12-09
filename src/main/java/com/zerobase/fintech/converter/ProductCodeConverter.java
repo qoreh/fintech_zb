@@ -1,6 +1,5 @@
 package com.zerobase.fintech.converter;
 
-import com.zerobase.fintech.type.OrganizationCode;
 import com.zerobase.fintech.type.ProductCode;
 
 import javax.persistence.AttributeConverter;
