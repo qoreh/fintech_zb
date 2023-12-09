@@ -3,12 +3,16 @@ package com.zerobase.fintech.service;
 import com.zerobase.fintech.domain.UserInfo;
 import com.zerobase.fintech.dto.UserInfoDto;
 import com.zerobase.fintech.encrypt.EncryptComponent;
+import com.zerobase.fintech.exception.CustomException;
 import com.zerobase.fintech.repository.UserInfoRepository;
+import com.zerobase.fintech.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
+
+import static com.zerobase.fintech.type.ErrorCode.ALREADY_REGISTERED_USER;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +26,7 @@ public class UserInfoServiceImpl implements UserInfoService{
             String encryptedNumber = encryptComponent
                     .encryptString(userInfoDto.getUserRegistrationNumber());
             if (userInfoRepository.findByUserRegistrationNumber(encryptedNumber).isPresent()) {
-                throw new RuntimeException("이미 존재하는 유저 정보입니다.");
+                throw new CustomException(ALREADY_REGISTERED_USER);
             } else {
                 userInfoDto.setUserRegistrationNumber(encryptedNumber);
             }

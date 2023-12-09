@@ -27,12 +27,6 @@ public class ProductInformationController {
     public ResponseEntity<BasicResponseDto> receiveInformation(
             @RequestBody ProductInfoDto productInfoDto) {
 
-        if (!ProductCode.isExist(productInfoDto.getProductCode())) {
-            throw new RuntimeException("존재하지 않는 상품코드입니다.");
-        }
-        if (!OrganizationCode.isExist(productInfoDto.getOrganizationCode())) {
-            throw new RuntimeException("존재하지 않는 기관입니다.");
-        }
 
         productInfoService.checkProductInfo(productInfoDto);
         BasicResponseDto response = new BasicResponseDto("00", "success");
@@ -41,18 +35,17 @@ public class ProductInformationController {
     }
 
     /*
-    organizationCode가 "00001", "00002"의 형태로 전달되며
+    organizationCode가 "NONE", "ORGANIZATION_ONE"의 형태로 전달되며
     NONE("none")일때는 모든 기관의 정보를 조회하는 것으로 설정하였습니다.
      */
     @ApiOperation(value = "상품 정보 조회 API", notes = "상품 정보를 조회하는 API")
     @GetMapping("/{organizationCode}")
     public ResponseEntity<ProductInfoResponseDto> getInformation(
             @ApiParam(value = "기관 코드", allowableValues = "NONE, ORGANIZATION_ONE, ORGANIZATION_TWO")
-            @PathVariable("organizationCode") String organizationCode) {
+            @PathVariable("organizationCode") OrganizationCode organizationCode) {
 
-        if (!OrganizationCode.isExist(organizationCode)) {
-            throw new RuntimeException("존재하지 않는 기관입니다.");
-        }
+        OrganizationCode.find(organizationCode.getCode());
+
         List<ProductInfoDto> productInfoDtoList =
                 productInfoService.getProductInformation(organizationCode);
 

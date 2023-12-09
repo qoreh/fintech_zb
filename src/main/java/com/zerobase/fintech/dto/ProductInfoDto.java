@@ -1,6 +1,9 @@
 package com.zerobase.fintech.dto;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.zerobase.fintech.domain.ProductInfo;
+import com.zerobase.fintech.type.OrganizationCode;
+import com.zerobase.fintech.type.ProductCode;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
@@ -11,9 +14,9 @@ import lombok.*;
 @Builder
 public class ProductInfoDto {
     @ApiModelProperty(example = "00001")
-    String organizationCode;
+    OrganizationCode organizationCode;
     @ApiModelProperty(example = "001")
-    String productCode;
+    ProductCode productCode;
     @ApiModelProperty(example = "9.9")
     Double productMaximumInterest;
     @ApiModelProperty(example = "1.1")

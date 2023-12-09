@@ -47,15 +47,15 @@ public class ProductInfoServiceImpl implements ProductInfoService{
     }
 
     @Override
-    public List<ProductInfoDto> getProductInformation(String organizationCode) {
+    public List<ProductInfoDto> getProductInformation(OrganizationCode organizationCode) {
 
         List<ProductInfo> productInfoList;
 
-        if (organizationCode.equals(OrganizationCode.NONE.getCode())) {
+        if (organizationCode == OrganizationCode.NONE) {
             productInfoList = productInfoRepository.findAll();
         } else {
             productInfoList = productInfoRepository
-                    .findAllByOrganizationCodeOrderByProductCode(organizationCode);
+                    .findAllByOrganizationCode(organizationCode);
         }
 
         return productInfoList.stream()
