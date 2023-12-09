@@ -1,6 +1,7 @@
 package com.zerobase.fintech.dto;
 
 import com.zerobase.fintech.domain.ProductInfo;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.util.List;
@@ -11,11 +12,15 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ProductInfoDto {
-
+    @ApiModelProperty(example = "00001")
     String organizationCode;
+    @ApiModelProperty(example = "001")
     String productCode;
+    @ApiModelProperty(example = "9.9")
     Double productMaximumInterest;
+    @ApiModelProperty(example = "1.1")
     Double productMinimumInterest;
+    @ApiModelProperty(example = "상품 1")
     String productName;
 
     public ProductInfo toEntity() {

@@ -1,6 +1,8 @@
 package com.zerobase.fintech.dto;
 
 import com.zerobase.fintech.domain.UserInfo;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 @Setter
@@ -8,10 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ApiModel
 public class UserInfoDto {
+    @ApiModelProperty(value = "Hidden Variable", hidden = true)
     String userKey;
+    @ApiModelProperty(example = "100000")
     Long userIncomeAmount;
+    @ApiModelProperty(example = "백엔드")
     String userName;
+    @ApiModelProperty(example = "900101-1234567")
     String userRegistrationNumber;
 
     public UserInfo toEntity(String userKey) {

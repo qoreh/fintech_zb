@@ -1,16 +1,14 @@
-package com.zerobase.fintech.dto;
+package com.zerobase.fintech.dto.response;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import java.util.List;
 @Getter
-@Builder
-public class ProductInfoResponseDto {
-    List<ProductInfoDto> data;
+@AllArgsConstructor
+@NoArgsConstructor
+public class BasicResponseDto {
     @ApiModelProperty(example = "00")
     String responseCode;
     @ApiModelProperty(example = "success")
     String responseMessage;
-
 }
