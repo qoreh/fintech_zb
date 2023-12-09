@@ -2,7 +2,6 @@ package com.zerobase.fintech.service;
 
 import com.zerobase.fintech.domain.UserInfo;
 import com.zerobase.fintech.dto.UserInfoDto;
-import com.zerobase.fintech.dto.UserResponseDto;
 import com.zerobase.fintech.encrypt.EncryptComponent;
 import com.zerobase.fintech.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
