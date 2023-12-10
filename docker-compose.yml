@@ -1,0 +1,41 @@
+version: '1.0.1'
+services:
+  fintech-mysql:
+    image: mysql:latest
+    container_name: fin-mysql
+    hostname: fin-mysql
+    environment:
+      MYSQL_DATABASE: fintech
+      MYSQL_USER: fintech
+      MYSQL_PASSWORD: fintech
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - 3306:3306
+    networks:
+      - fintech-net
+# com.mysql.cj.jdbc.exceptions.communicationsexception: communications link failure
+# 해당 에러로 인해서 fintech 컨테이너만 구동이 안 됩니다... ㅜㅜ
+# url에 이름도 맞춰서 넣어보고 useSSL=false도 넣어보았지만 해결하지 못했습니다...! 어느 부분이 문제일까요...
+  fintech:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - fintech-net
+
+  fintech-redis:
+    image: redis
+    hostname: fin-mysql
+    container_name: fin-redis
+    ports:
+      - 6379:6379
+    networks:
+      - fintech-net
+
+
+networks:
+  fintech-net:
+    driver: bridge
+

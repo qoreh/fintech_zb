@@ -1,5 +1,6 @@
 package com.zerobase.fintech.domain;
 
+import com.zerobase.fintech.aop.Encrypt;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,10 +18,8 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userKey;
-    //@Encrypt로 암호화 복호화 AOP 처리
+    @Encrypt
     private String userRegistrationNumber;
     private String userName;
     private Long userIncomeAmount;
-
-
 }

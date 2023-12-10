@@ -5,6 +5,8 @@ import com.zerobase.fintech.dto.ProductInfoDto;
 import com.zerobase.fintech.repository.ProductInfoRepository;
 import com.zerobase.fintech.type.OrganizationCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +18,9 @@ import java.util.stream.Collectors;
 public class ProductInfoServiceImpl implements ProductInfoService{
     private final ProductInfoRepository productInfoRepository;
 
+
     @Override
+    @CacheEvict(value = "PRODUCT", allEntries = true)
     public void checkProductInfo(ProductInfoDto productInfoDto) {
         /*
         productCode가 상품의 고유한 code인지 아니면 하위에 여러 상품을 둔 카테고리 개념의 code인지
@@ -47,6 +51,7 @@ public class ProductInfoServiceImpl implements ProductInfoService{
     }
 
     @Override
+    @Cacheable(value = "PRODUCT", key = "#organizationCode")
     public List<ProductInfoDto> getProductInformation(OrganizationCode organizationCode) {
 
         List<ProductInfo> productInfoList;

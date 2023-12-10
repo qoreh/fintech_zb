@@ -20,6 +20,7 @@ public class UserInfoServiceImpl implements UserInfoService{
     private final UserInfoRepository userInfoRepository;
     @Override
     public String checkUserInfo(UserInfoDto userInfoDto) {
+        String userKey = generateUserKey();
 
         try {
             String encryptedNumber = encryptComponent
@@ -33,7 +34,6 @@ public class UserInfoServiceImpl implements UserInfoService{
             throw new RuntimeException(e);
         }
 
-        String userKey = generateUserKey();
         userInfoRepository.save(userInfoDto.toEntity(userKey));
 
         return userKey;
@@ -41,7 +41,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 
     @Override
     public UserInfoDto getUserInfo(String userKey) {
-        // 정보 가져와서 주민번호 복호화
+
         Optional<UserInfo> optionalUserInfo= userInfoRepository.findByUserKey(userKey);
 
         if (!optionalUserInfo.isPresent()) {
